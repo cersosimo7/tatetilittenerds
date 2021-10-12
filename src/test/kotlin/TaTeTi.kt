@@ -1,4 +1,6 @@
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import java.lang.RuntimeException
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
@@ -9,6 +11,28 @@ class `Ta Te Ti` {
 
     assertTrue(tablero.estaVacio())
   }
+
+  @Test
+  fun `Se puede iniciar el juego con dos jugadores`(){
+    val jugador1 = "jugador-1-test"
+    val jugador2 = "jugador-2-test"
+    val juego = Juego(jugador1, jugador2)
+
+    juego.empezar()
+
+    assertTrue(juego.estaEmpezado())
+  }
+
+  @Test
+  fun `No se puede iniciar el juego con un jugador`(){
+    val jugador1 = "jugador-1-test"
+
+    val exception= assertThrows<RuntimeException> {
+      Juego(jugador1)
+    }
+
+  }
+
 
   @Test
   internal fun `Inicialmente una casilla esta vacia`() {
