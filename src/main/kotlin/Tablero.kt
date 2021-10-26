@@ -1,4 +1,8 @@
 class Tablero {
+  companion object {
+    const val CASILLA_OCUPADA = "La casilla esta ocupada"
+  }
+
   private val casillas = arrayOf(
     arrayOf("nada", "nada", "nada"),
     arrayOf("nada", "nada", "nada"),
@@ -14,6 +18,9 @@ class Tablero {
   }
 
   fun ponerUnaFichaEn(ficha: String, fila: Int, columna: Int) {
+    if(!laCasillaEstaVacia(fila, columna))
+      throw RuntimeException(CASILLA_OCUPADA)
+
     casillas[fila][columna] = ficha
   }
 }
